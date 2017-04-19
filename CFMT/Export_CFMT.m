@@ -7,7 +7,7 @@
 %  file.
 %
 %  Update 11/2016
-%  Now
+%  Includes breakdown of accuracy across individual trials for all subjects
 
 %% Code
 %Final Matrix Setup Cambridge
@@ -26,15 +26,8 @@ m_count=0;
 f_count=0;
 
 for a=1:length(names)
-    %% Debug
-    %check='CMTF_results_SD_9b_040_Female_6-6-13.txt';
-    
-    %a=1;
-    %names{1,1}=check;
-    
-    %fid=fopen(check);
-    
-    %% Working Calculation
+
+    %% Calculation
     fid=fopen(names{a,1});
     data = textscan(fid,'%s','Delimiter','\n');
     tempcsv = cell(150,7);
