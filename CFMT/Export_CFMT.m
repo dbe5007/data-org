@@ -78,7 +78,8 @@ for a=1:length(names)
     if taskcheck==1
         taskname='Car_Cambridge';
     else
-        taskcheck=strfind(tempcsv{7,2}, 'p1.jpeg');
+        %taskcheck=strfind(tempcsv{7,2}, 'p1.jpeg');
+        taskcheck=strfind(tempcsv{7,2}, 'pTrial_1.jpg');
         if taskcheck==1
             taskname='Female_Cambridge';
         else
