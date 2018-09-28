@@ -5,7 +5,13 @@
 
 %  Readings in CFMT Files and exports individual CSV files and summary
 %  file.
+%  
 %
+%
+%  Update 9/28/2018
+%  Added code to write output to csv file. 
+%  
+%  
 %  Update 11/2016
 %  Includes breakdown of accuracy across individual trials for all subjects
 
@@ -308,8 +314,27 @@ for a=1:length(names)
     
 end
 
-cell2csv(['summary_' taskname '.csv'],final);
-cell2csv(['summary_' taskname 'Ind_Trials.csv'],ind_trials);
+%cell2csv(['summary_' taskname '.csv'],final);
+%cell2csv(['summary_' taskname 'Ind_Trials.csv'],ind_trials);
 
+%% Write output file
 
-fclose all;
+file = fopen(['summary_' taskname '.csv'], 'w');
+
+for a=1:size(final,1)
+    
+    for b=1:size(final,2)
+        
+        var = eval(['final{a,b}']);
+        %var = final(a,b);
+        
+        fprintf(file, '%s', var);
+        fprintf(file, ',');
+        
+    end
+    
+    fprintf(file, '\n');
+    
+end
+
+fclose(file);
