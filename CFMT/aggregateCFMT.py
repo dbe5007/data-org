@@ -8,13 +8,27 @@
 import os
 import csv
 import fnmatch
+import sys
+
+# Get argument path from command line
+for arg in sys.argv[1:]:
+    datapath = arg
 
 #Final Matrix Setup Cambridge
 outputHeader = ["Subject_ID","Date","Short Form Accuracy Raw","Short Form Accuracy Percent","Long Form Accuracy Raw","Long Form Accuracy Percent","Block 1 Correct RT","Block 2 Correct RT","Block 3 Correct RT","Block 4 Correct RT","Total Correct RT Short Form","Total Correct RT Long Form","Block 1 Raw Total","Block 2 Raw Total","Block 3 Raw Total","Block 4 Raw Total","Block 1 Missed Trials","Block 2 Missed Trials","Block 3 Missed Trials","Block 4 Missed Trials"]
 row={}
 
 # Find folder of text files
-listOfFiles = os.listdir(os.getcwd())
+try:
+    datapath
+except NameError:
+    listOfFiles = os.listdir(os.getcwd())
+    print "went here"
+    print (os.getcwd())
+else:
+    print "went there"
+    os.chdir(datapath)
+    listOfFiles = os.listdir(datapath)
 pattern = "*.txt"
 i=0
 finalListOfFiles={}
