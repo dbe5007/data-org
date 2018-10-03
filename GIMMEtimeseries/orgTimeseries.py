@@ -12,29 +12,35 @@ import os
 import csv
 import fnmatch
 import sys
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 
 # Get argument path from command line
-for arg in sys.argv[1:]:
+for arg in sys.argv[1]:
     datapath = arg
 
-#Final Matrix Setup Cambridge
-outputHeader = ["Subject_ID","Date","Short Form Accuracy Raw","Short Form Accuracy Percent","Long Form Accuracy Raw","Long Form Accuracy Percent","Block 1 Correct RT","Block 2 Correct RT","Block 3 Correct RT","Block 4 Correct RT","Total Correct RT Short Form","Total Correct RT Long Form","Block 1 Raw Total","Block 2 Raw Total","Block 3 Raw Total","Block 4 Raw Total","Block 1 Missed Trials","Block 2 Missed Trials","Block 3 Missed Trials","Block 4 Missed Trials"]
-row={}
+for arg in sys.argv[2]:
+    series = arg
 
 # Find folder of text files
 try:
     datapath
 except NameError:
     listOfFiles = os.listdir(os.getcwd())
+    os.mkdir()
     print "went here"
     print (os.getcwd())
 else:
     print "went there"
     os.chdir(datapath)
     listOfFiles = os.listdir(datapath)
+    os.mkdir(datapath "/output")
+
+try:
+    series
+except NameError:
+    print "went here series"
+else:
+    print "went there series"
+    os.mkdir(datapath "/output")
 
 pattern = "*.txt"
 i=0
@@ -119,27 +125,4 @@ with open('exportCFMTOutput.csv', 'wb') as csvfile:
         spamwriter.writerow(row[i])
         dataacc[i]=row[i][5]
 
-#size, scale = 1000, 10
-#commutes = pd.Series(np.random.gamma(scale, size=size) ** 1.5)
-#commutes.plot.hist(grid=True, bins=20, rwidth=0.9, color='#607c8e')
-databars = pd.Series(dataacc)
-databars.plot.hist(grid=True, bins=20, rwidth=0.9, color='#607c8e')
-plt.title('CFMT Accuracy')
-plt.xlabel('Accuracy')
-plt.ylabel('Bins')
-plt.grid(axis='y', alpha=0.75)
-
-plt.savefig("foo.pdf")
-
-
-# An "interface" to matplotlib.axes.Axes.hist() method
-#n, bins, patches = plt.hist(array, bins=10)
-#plt.grid(axis='y', alpha=0.75)
-#plt.xlabel('Value')
-#plt.ylabel('Frequency')
-#plt.title('My Very Own Histogram')
-#plt.text(23, 45, r'$\mu=15, b=3$')
-#maxfreq = n.max()
-# Set a clean upper y-axis limit.
-#plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
 
