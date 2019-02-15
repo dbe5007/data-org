@@ -29,10 +29,10 @@ try:
     datapath
 except NameError:
     listOfFiles = os.listdir(os.getcwd())
-    print "went here"
+    #print "went here"
     print (os.getcwd())
 else:
-    print "went there"
+    #print "went there"
     os.chdir(datapath)
     listOfFiles = os.listdir(datapath)
 
