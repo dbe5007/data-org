@@ -8,4 +8,4 @@ MATLAB and Python scripts to import raw text files from cambridge tasks and expo
 
 .. code:: sh
 
-  python aggregateCFMT.py "/Users/dan/Desktop"
+  python aggregateCFMT.py "/your/data/here"
